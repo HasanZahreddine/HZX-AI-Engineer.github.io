@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hassan Zahreddine | Junior AI Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border-radius: 20px;
+            margin-bottom: 60px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            header::before {
+                animation: none;
+            }
+            .skill-card:hover {
+                transform: none;
+            }
+        }
+
+        h1 {
+            font-size: clamp(2.5em, 5vw, 3.5em);
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            font-size: clamp(1.2em, 3vw, 1.4em);
+            color: #9ca3af;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: clamp(1em, 2vw, 1.1em);
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            line-height: 1.5;
+        }
+
+        .section {
+            background: rgba(26, 26, 46, 0.6);
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        h2 {
+            font-size: clamp(1.8em, 4vw, 2.2em);
+            margin-bottom: 30px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2::before {
+            content: '';
+            width: 5px;
+            height: 40px;
+            background: linear-gradient(180deg, #6366f1 0%, #a855f7 100%);
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+            border-color: #6366f1;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .skill-card h3 {
+            color: #6366f1;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .skill-card p {
+            color: #9ca3af;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .about-content {
+            font-size: 1.15em;
+            color: #d1d5db;
+            line-height: 1.8;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-section h2 {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            color: #9ca3af;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-btn {
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+            border-color: #fff;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #d1d5db;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 18px;
+            background: rgba(26, 26, 46, 0.6);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 10px;
+            color: #e0e0e0;
+            font-family: inherit;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .status-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        .status-message.success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            color: #86efac;
+        }
+
+        .status-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+        }
+
+        .focus-areas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .focus-tag {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: #a5b4fc;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .focus-tag:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%);
+            transform: scale(1.05);
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        a:focus,
+        button:focus,
+        input:focus,
+        textarea:focus {
+            outline: 2px solid #6366f1;
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 30px 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-btn {
+                padding: 12px 25px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h2 {
+                gap: 10px;
+            }
+            
+            h2::before {
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 50px 15px;
+            }
+            
+            .cta-section {
+                padding: 40px 20px;
+            }
+            
+            .focus-tag {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hassan Zahreddine</h1>
+            <p class="tagline">Junior AI Engineer</p>
+            <p class="subtitle">Specializing in Agentic Design & LangChain Development</p>
+        </header>
+
+        <section class="section" aria-labelledby="about-heading">
+            <h2 id="about-heading">About Me</h2>
+            <div class="about-content">
+                <p>I'm a passionate AI engineer at the beginning of my journey in artificial intelligence and machine learning. With a strong foundation in Python and modern AI frameworks, I'm focused on building intelligent systems that can reason, plan, and act autonomously.</p>
+                <br>
+                <p>My expertise lies in creating agentic systems using LangChain, where I design and implement AI agents capable of complex decision-making and task execution. I'm constantly learning and staying up-to-date with the latest developments in the AI field.</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="skills-heading">
+            <h2 id="skills-heading">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>🤖 Agentic AI Design</h3>
+                    <p>Building autonomous AI agents with reasoning, planning, and action capabilities using modern frameworks</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🔗 LangChain</h3>
+                    <p>Developing LLM-powered applications with chains, agents, and memory systems</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🐍 Python</h3>
+                    <p>Strong programming foundation with focus on AI/ML libraries and frameworks</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🧠 Machine Learning</h3>
+                    <p>Understanding of ML concepts, model training, and deployment</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📊 Data Processing</h3>
+                    <p>Working with data pipelines and preprocessing for AI applications</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🔧 API Integration</h3>
+                    <p>Connecting AI systems with external services and tools</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="focus-heading">
+            <h2 id="focus-heading">Areas of Focus</h2>
+            <div class="focus-areas">
+                <span class="focus-tag">LangChain Development</span>
+                <span class="focus-tag">AI Agents</span>
+                <span class="focus-tag">Prompt Engineering</span>
+                <span class="focus-tag">Python Development</span>
+                <span class="focus-tag">RAG Systems</span>
+                <span class="focus-tag">Vector Databases</span>
+                <span class="focus-tag">LLM Applications</span>
+                <span class="focus-tag">Autonomous Systems</span>
+            </div>
+        </section>
+
+        <section class="cta-section" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Let's Connect</h2>
+            <p>I'm actively seeking junior AI engineer positions where I can contribute and grow. Let's build the future of AI together!</p>
+            
+            <form id="contactForm" class="contact-form" novalidate>
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="name" required aria-required="true">
+                    <div class="error-message" id="nameError" style="color: #fca5a5; font-size: 0.9em; margin-top: 5px; display: none;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email *</label>
+                    <input type="email" id="email" name="email" required aria-required="true">
+                    <div class="error-message" id="emailError" style="color: #fca5a5; font-size: 0.9em; margin-top: 5px; display: none;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required aria-required="true"></textarea>
+                    <div class="error-message" id="messageError" style="color: #fca5a5; font-size: 0.9em; margin-top: 5px; display: none;"></div>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+                <div id="status" class="status-message" role="alert" aria-live="polite"></div>
+            </form>
+
+            <div class="contact-links">
+                <a href="https://github.com/HasanZahreddine" class="contact-btn" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
+                    <span>💻</span> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/hassan-zahreddine" class="contact-btn" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile">
+                    <span>💼</span> LinkedIn
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const statusDiv = document.getElementById('status');
+            
+            // Add honeypot field for spam protection
+            const honeypot = document.createElement('input');
+            honeypot.type = 'text';
+            honeypot.name = 'website';
+            honeypot.style.display = 'none';
+            honeypot.style.position = 'absolute';
+            honeypot.style.left = '-9999px';
+            honeypot.autocomplete = 'off';
+            contactForm.appendChild(honeypot);
+
+            // Email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            function showError(fieldId, message) {
+                const errorElement = document.getElementById(fieldId + 'Error');
+                if (errorElement) {
+                    errorElement.textContent = message;
+                    errorElement.style.display = 'block';
+                    document.getElementById(fieldId).style.borderColor = '#ef4444';
+                }
+            }
+
+            function clearError(fieldId) {
+                const errorElement = document.getElementById(fieldId + 'Error');
+                if (errorElement) {
+                    errorElement.textContent = '';
+                    errorElement.style.display = 'none';
+                    document.getElementById(fieldId).style.borderColor = 'rgba(99, 102, 241, 0.3)';
+                }
+            }
+
+            function validateForm() {
+                let isValid = true;
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                const honeypotValue = honeypot.value;
+
+                // Honeypot check
+                if (honeypotValue) {
+                    return false;
+                }
+
+                // Name validation
+                if (!name) {
+                    showError('name', 'Please enter your name');
+                    isValid = false;
+                } else if (name.length < 2) {
+                    showError('name', 'Name must be at least 2 characters long');
+                    isValid = false;
+                } else {
+                    clearError('name');
+                }
+
+                // Email validation
+                if (!email) {
+                    showError('email', 'Please enter your email');
+                    isValid = false;
+                } else if (!emailRegex.test(email)) {
+                    showError('email', 'Please enter a valid email address');
+                    isValid = false;
+                } else {
+                    clearError('email');
+                }
+
+                // Message validation
+                if (!message) {
+                    showError('message', 'Please enter your message');
+                    isValid = false;
+                } else if (message.length < 10) {
+                    showError('message', 'Message must be at least 10 characters long');
+                    isValid = false;
+                } else {
+                    clearError('message');
+                }
+
+                return isValid;
+            }
+
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (!validateForm()) {
+                    return;
+                }
+
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    message: document.getElementById('message').value.trim()
+                };
+
+                // Disable submit button
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                try {
+                    // In a real application, you would send this to a backend server
+                    // For now, we'll simulate sending an email via mailto
+                    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+                    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+                    const mailtoLink = `mailto:hasanzahreddine718@gmail.com?subject=${subject}&body=${body}`;
+                    
+                    // Show success message
+                    statusDiv.textContent = 'Preparing your message...';
+                    statusDiv.className = 'status-message success';
+                    statusDiv.style.display = 'block';
+                    
+                    // Open email client after a short delay
+                    setTimeout(() => {
+                        window.open(mailtoLink, '_blank');
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Update success message
+                        statusDiv.textContent = 'Email client opened! Please send your message.';
+                        
+                        // Re-enable button after 3 seconds
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Send Message';
+                            statusDiv.style.display = 'none';
+                        }, 3000);
+                    }, 1000);
+
+                } catch (error) {
+                    // Show error message
+                    statusDiv.textContent = 'Failed to send message. Please try again or contact me directly.';
+                    statusDiv.className = 'status-message error';
+                    statusDiv.style.display = 'block';
+                    
+                    // Re-enable button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                    
+                    // Hide error after 5 seconds
+                    setTimeout(() => {
+                        statusDiv.style.display = 'none';
+                    }, 5000);
+                }
+            });
+
+            // Real-time validation
+            ['name', 'email', 'message'].forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('input', () => {
+                        if (field.value.trim()) {
+                            clearError(fieldId);
+                        }
+                    });
+                }
+            });
+
+            // Focus trap for accessibility
+            contactForm.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    submitBtn.focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
